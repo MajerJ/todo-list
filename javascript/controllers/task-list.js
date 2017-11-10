@@ -3,7 +3,7 @@ angular.module('TaskList', [])
     $scope.list = [];
     $http({
         method: 'GET',
-        url: 'http://localhost:3000/tasks',
+        url: 'https://todo20-be.herokuapp.com/tasks',
     }).then(function(response) {
         $scope.list = response.data;
     });
@@ -13,7 +13,7 @@ angular.module('TaskList', [])
     $scope.addTask = function() {        
         $http({                      
             method: 'POST',
-            url: 'http://localhost:3000/tasks',            
+            url: 'https://todo20-be.herokuapp.com/tasks',            
             data: $httpParamSerializerJQLike({task: $scope.newTask.task}),
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function(response) {
@@ -34,7 +34,7 @@ angular.module('TaskList', [])
             if ($scope.list[i].done) {                
                 $http({                    
                     method: 'DELETE',
-                    url: 'http://localhost:3000/tasks/' + $scope.list[i]._id                   
+                    url: 'https://todo20-be.herokuapp.com/tasks/' + $scope.list[i]._id                   
                 }).then(function(response) {                    
                     console.log(response.data)                    
                 });
@@ -47,7 +47,7 @@ angular.module('TaskList', [])
         for (var i = 0; i < ($scope.list.length); i++) {                            
                 $http({                    
                     method: 'PUT',
-                    url: 'http://localhost:3000/tasks/' + $scope.list[i]._id,
+                    url: 'https://todo20-be.herokuapp.com/tasks/' + $scope.list[i]._id,
                     data: $httpParamSerializerJQLike({done: $scope.list[i].done}),
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 }).then(function(response) {                    
